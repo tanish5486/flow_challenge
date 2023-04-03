@@ -1,24 +1,28 @@
-pub contract LibraryContract {
-    pub var Books: {String: Book}
+pub contract ProductsContract {
+    pub var Products: {String: Product}
 
-    pub struct Book {
-        pub let Title: String
-        pub let Author: String
-        pub let YearPublished: Int
+    pub struct Product {
+        pub let Name: String
+        pub let Price: Int
+        pub let Description: String
 
-        init(_Title: String, _Author: String, _YearPublished: Int) {
-            self.Title = _Title
-            self.Author = _Author
-            self.YearPublished = _YearPublished
+        init(_Name: String, _Price: Int, _Description: String) {
+            self.Name = _Name
+            self.Price = _Price
+            self.Description = _Description
         }
     }
 
-    pub fun addBook(Title: String, Author: String, YearPublished: Int) {
-        let newBook = Book(_Title: Title, _Author: Author, _YearPublished: YearPublished)
-        self.Books[Title] = newBook
+    pub fun addProduct(Name: String, Price: Int, Description: String) {
+        let newProduct = Product(_Name: Name, _Price: Price, _Description: Description)
+        self.Products[Name] = newProduct
+    }
+
+    pub fun getProduct(Name: String): Product? {
+        return self.Products[Name]
     }
 
     init() {
-        self.Books = {}
+        self.Products = {}
     }
 }
